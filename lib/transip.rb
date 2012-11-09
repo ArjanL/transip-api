@@ -206,7 +206,7 @@ class Transip
   # Used as authentication
   def cookie
     raise StandardError, "Don't have an authentication hash yet. Please set a hash using generate_hash or hash= method." if hash.blank?
-    "login=#{self.username}; hash=#{self.hash}; mode=#{self.mode}; timestamp=#{Time.now.to_time.to_i}; nonce=#{Time.now.to_time.to_i}; "
+    "login=#{self.username}; hash=#{self.hash}; mode=#{self.mode}; timestamp=#{Time.now.to_time.to_i}; nonce=#{nonce(self.hash, time = Time.now)}; "
   end
 
   # Same as client method but initializes a brand new fresh client.
