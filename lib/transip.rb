@@ -151,6 +151,7 @@ class Transip
     raise ArgumentError, "The :username options is required!" if @username.nil?
     @ip = options[:ip] || self.class.local_ip
     @mode = options[:mode] || :readonly
+    @timestamp = Time.now
     if options[:password]
       @password = options[:password]
       self.generate_hash
