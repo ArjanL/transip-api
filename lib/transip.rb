@@ -208,7 +208,7 @@ class Transip
     raise StandardError, "Don't have an authentication hash yet. Please set a hash using generate_hash or hash= method." if hash.blank?
     @nonce = Digest::MD5.new.hexdigest(rand().to_s)
     @time = Time.now.to_time.to_i
-    noncestring = @nonce + @time
+    noncestring = "#{@nonce}:#{@time}"
     sha1_string = Digest::SHA1.new.hexdigest(noncestring)
     "login=#{self.username}; hash=#{self.hash}; mode=#{self.mode}; timestamp=#{Time.now.to_time.to_i}; nonce=#{sha1_string}; "
   end
